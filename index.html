@@ -1,0 +1,283 @@
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>Findation</title>
+        <!-- Path to Framework7 Library CSS-->
+        <link rel="stylesheet" href="css/framework7.ios.min.css">
+        <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+        <!-- Path to your custom app styles-->
+        <link rel="stylesheet" href="css/my-app.css">
+     
+
+      </head>
+      <body>
+        <!-- Status bar overlay for fullscreen mode-->
+        <div class="statusbar-overlay"></div>
+        <!-- Panels overlay-->
+        
+        <!-- Views-->
+        <div class="views">
+          <!-- Your main view, should have "view-main" class-->
+          <div class="view view-main">
+            <!-- Top Navbar-->
+            <div class="navbar">
+              <!-- Navbar inner for Index page-->
+              <div data-page="index" class="navbar-inner">
+                <!-- We have home navbar without left link-->
+                
+              </div>
+              <!-- Navbar inner for Main page-->
+              <div data-page="main" class="navbar-inner cached">
+                <div class="left sliding"><a href="#" class="back link theme-white"> <i class="icon icon-back"></i><span class="color-white">Back</span></a></div>
+                <div class="center sliding"></div>
+              </div>
+              <!-- Navbar inner for Search page-->
+              <div data-page="search" class="navbar-inner cached">
+                 <div class="left sliding"><a href="#" class="back link theme-white"> <i class="icon icon-back"></i><span class="color-white">Menu</span></a></div>
+                <div class="center sliding"></div>
+              </div>
+              <!-- Navbar inner for Form page-->
+              <div data-page="beautypicks" class="navbar-inner cached">
+                 <div class="left sliding"><a href="#" class="back link theme-white"> <i class="icon icon-back"></i><span class="color-white">Menu</span></a></div>
+                <div class="center sliding"></div>
+              </div>
+              <div data-page="schedule" class="navbar-inner cached">
+                 <div class="left sliding"><a href="#" class="back link theme-white"> <i class="icon icon-back"></i><span class="color-white">Menu</span></a></div>
+                <div class="center sliding"></div>
+              </div>
+            </div>
+            <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+              <!-- Index Page-->
+              <div data-page="index" class="page">
+                <!-- Scrollable page content-->
+                <div class="page-content">
+                    <div class="top-margin">
+                    </div>
+                    <div class="logo">
+                    </div> 
+                    <div class="below-logo">      
+                      <a href="#main" class="go-button item-link">
+                        <img src="img/button.png" />
+                      </a>       
+                    </div>
+                </div>
+              </div>
+              <!-- About Page-->
+              <div data-page="main" class="page cached">
+                <div class="page-content">
+                  <div class="top-margin">
+                  </div>
+                  <div class="logo">
+                  </div> 
+                  <div class="select-area">
+                    <div class="list-block">
+                      <ul>
+                        <li>
+                          <a href="#search" class="item-link">
+                            <div class="item-content">
+                              <div class="item-media">
+                                <img src="img/bullet1.png" />
+                              </div>
+                              <div class="item-inner">
+                                <div class="item-input">
+                                  Find Products In A Store
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#beautypicks" class="item-link">
+                            <div class="item-content">
+                              <div class="item-media">
+                                <img src="img/bullet2.png" />
+                              </div>
+                              <div class="item-inner">
+                                <div class="item-input">
+                                  Beauty Picks
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#schedule" class="item-link">
+                            <div class="item-content">
+                              <div class="item-media">
+                                <img src="img/bullet3.png" />
+                              </div>
+                              <div class="item-inner">
+                                <div class="item-input">
+                                  Schedule a Consultation
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div> 
+
+                  </div>
+                </div>
+              </div>
+              <!-- Services Page-->
+              <div data-page="search" class="page cached">
+                <div class="page-content">
+                  
+                  <div class="top-margin">
+                  </div>
+                  <div class="logo">
+                  </div> 
+                  <div class="select-area">
+                    <div class="list-block">
+                      <ul>
+                        <li class="item-content">
+                          <div class="item-title label">Brand</div>
+                          <div class="item-inner">
+                            <div class="item-input">
+                              <input type="text" placeholder="Brand" id="brand-dropdown"></div>
+                          </div>
+                        </li>
+                    
+                        <li class="item-content">
+                          <div class="item-title label">Product</div>
+                          <div class="item-inner">
+                          <div class="item-input">
+                            <input type="text" placeholder="Product" id="product-dropdown" autocomplete=""></div>
+                          </div>
+                        </li>
+                      
+                        <li class="item-content">
+                          <div class="item-title label">Shade</div>
+                          <div class="item-inner">
+                            <div class="item-input">
+                              <input type="text" placeholder="Shade" id="shade-dropdown"></div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <a href="#searchresult" class="button active">Search</a>
+                  </div>
+                </div>
+              </div>
+              <!--Search result page -->
+              <div data-page="searchresult" class="page cached">
+                <div class="page-content">
+                  
+                  <div class="top-margin">
+                  </div>
+                  <div class="logo">
+                  </div> 
+                  <div class="temp">
+                  </div>
+                  <div class="list-block media-list">
+                    <ul>
+                      
+                    </ul>
+                  </div>
+                    
+                  
+                </div>
+              </div>
+              <!-- Form Page-->
+              <div data-page="beautypicks" class="page cached">
+                <div class="page-content">
+                  <div class="top-margin">
+                  </div>
+                  <div class="logo">
+                  </div> 
+                  <div class="select-area">
+                    <div class="list-block">
+                      <ul>
+                        <li>
+                          <a href="#top10favorites" class="item-link">
+                            <div class="item-content">
+                              <div class="item-media">
+                                <img src="img/bullet2.png" />
+                              </div>
+                              <div class="item-inner">
+                                <div class="item-input">
+                                  Top 10 Favorites
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#topbrands" class="item-link">
+                            <div class="item-content">
+                              <div class="item-media">
+                                <img src="img/bullet2.png" />
+                              </div>
+                              <div class="item-inner">
+                                <div class="item-input">
+                                  Top Brands
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#topproducts" class="item-link">
+                            <div class="item-content">
+                              <div class="item-media">
+                                <img src="img/bullet2.png" />
+                              </div>
+                              <div class="item-inner">
+                                <div class="item-input">
+                                  Top Products
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#topshades" class="item-link">
+                            <div class="item-content">
+                              <div class="item-media">
+                                <img src="img/bullet2.png" />
+                              </div>
+                              <div class="item-inner">
+                                <div class="item-input">
+                                  Top Shades
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+              <div data-page="schedule" class="page cached">
+                <div class="page-content">
+                  
+                  <div class="top-margin">
+                  </div>
+                  <div class="logo">
+                  </div> 
+                  Comming Soon
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Toolbar-->
+            
+          </div>
+        </div>
+        
+        <!-- Path to Framework7 Library JS-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/framework7.min.js"></script>
+       
+        <!-- Path to your app js-->
+        <script type="text/javascript" src="js/my-app.js"></script>
+      </body>
+    </html>
