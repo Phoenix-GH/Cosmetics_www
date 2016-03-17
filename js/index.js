@@ -6,15 +6,6 @@ window.shouldRotateToOrientation = function(degrees) {
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady()
 {
+    alert('ready');
+}
 
-}
-document.addEventListener("offline", onOffline, false);
-function onOffline()
-{
-    myApp.addNotification({
-        title: 'Warning',
-        subtitle: '',
-        message: 'No connection available',
-        media: '<i class="icon demo-icon-1"></i>'
-    });
-}
