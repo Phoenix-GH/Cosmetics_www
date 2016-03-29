@@ -63,7 +63,7 @@
 }
 .list-block ul .item-media img
 {
-	width:10vw;
+	width:5vw;
 }
 #picker-brands
 {
@@ -91,7 +91,7 @@ form .item-title
 {
     color:white;
 }
-form .item-input input, textarea
+form .item-input input, textarea, select
 {
     color:white!important;
 }
