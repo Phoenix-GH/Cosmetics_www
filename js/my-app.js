@@ -69,6 +69,63 @@ var autocompleteDropdownExpand = myApp.autocomplete({
         $$('#shade-dropdown').val('');
     }
 });
+var store_info=[];
+
+var results=[];
+var hebStoreDropdown = myApp.autocomplete({
+    input: '#hebstore-dropdown',
+    openIn: 'dropdown',
+    preloader:true,
+    expandInput: true, // expand input
+    valueProperty: 'id', //object's "value" property name
+    textProperty: 'text', //object's "text" property name
+
+    source: function (autocomplete, query, render) {
+
+
+        // Show Preloader
+        autocomplete.showPreloader();
+
+        //alert(JSON.stringify(selectedBrands));
+        $$.ajax({
+            url: base_url+'?mode=displaystores',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+               results=[];
+                store_info=[];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].address.toLowerCase().indexOf(query.toLowerCase()) >= 0)
+                    {
+                        results.push('HEB '+data[i].id+', '+data[i].address+' '+data[i].state+' '+data[i].zipcode);
+
+                        store_info[i]=data[i];
+                    }
+
+                }
+                // Hide Preoloader
+                autocomplete.hidePreloader();
+                // Render items by passing array with result items
+                render(results);
+            }
+        });
+    },
+    onClose: function (autocomplete, value) {
+        $("#assoc-dropdown").empty();
+        var index=results.indexOf($$("#hebstore-dropdown").val());
+        if(index) {
+            $$("#assoc-dropdown").append('<option>' + store_info[index].beauty_assoc_1 + '</option>');
+
+            $$("#assoc-dropdown").append('<option>' + store_info[index].beauty_assoc_2 + '</option>');
+
+            $$("#assoc-dropdown").append('<option>' + store_info[index].beauty_assoc_3 + '</option>');
+
+            $$("#assoc-dropdown").append('<option>' + store_info[index].beauty_assoc_4 + '</option>');
+
+            $$("#assoc-dropdown").append('<option>' + store_info[index].beauty_assoc_5 + '</option>');
+        }
+    }
+});
 
 var productDropDown = myApp.autocomplete({
     input: '#product-dropdown',
@@ -383,6 +440,8 @@ function filter_products()
             $$(".search-list ul li[data-brand='Maybelline']").css('display', 'block');
         if ($$("#checkbox-nyx").is(':checked'))
             $$(".search-list ul li[data-brand='NYX']").css('display', 'block');
+        if ($$("#checkbox-heb").is(':checked'))
+            $$(".search-list ul li[data-brand='Heb']").css('display', 'block');
     }
 }
 
@@ -502,7 +561,7 @@ function load_product_info(url)
             $(".product-content").contents().find('iframe').remove();
             $(".product-content").contents().find('ul').remove();
             $(".product-content").contents().find('a').remove();
-
+            myApp.initImagesLazyLoad('.product-content');
             myApp.hideIndicator();
         }
     });
@@ -514,6 +573,7 @@ function getRandomInt(min, max) {
 function find_products(brand_name,product_name,shade_name)
 {
     myApp.showIndicator();
+    var productArray=[];
     $$.ajax({
         url: base_url+'?mode=searchproducts&&brand_name='+brand_name+'&&product_name='+product_name+'&&shade_name='+shade_name,
         method: 'GET',
@@ -522,8 +582,20 @@ function find_products(brand_name,product_name,shade_name)
             $$(".search-list ul").html('');
             if (data.length > 0)
             {
-                for (var i = 0; i < data.length; i++) {
+                data.sort(function(a,b){
+                        var obj1= JSON.parse(a.content);
+                    var title1= a.title;
 
+                    var obj2= JSON.parse(b.content);
+                    var title2= b.title;
+                    if(title1<title2)
+                        return -1;
+                    else
+                        return 1;
+                });
+
+                for (var i = 0; i < data.length; i++) {
+                    //productArray.push(htmlObj);
                     var product_info = JSON.parse(data[i].content);
                     var image_url=filter_slash(product_info.image);
                     if(image_url.substr(0,4)!='http')
@@ -531,15 +603,17 @@ function find_products(brand_name,product_name,shade_name)
                     var htmlObj = '<li data-brand="'+filter_slash(product_info.title)+'">' +
                         '<a href="#product?productid='+data[i].id+'&&url=' + filter_slash(product_info.url) + '" class="item-link">' +
                             '<div class="item-content">'+
-                        '<div class="item-media"><img src="' + image_url + '"/></div>' +
-                        '<div class="item-inner"><div class="item-title"><div class="item-title-row">' + filter_slash(product_info.title) + '</div>' +
+                        '<div class="item-media"><img class="lazy lazy-fadeIn" src="' + image_url + '"/></div>' +
+                        '<div class="item-inner"><div class="item-title"><div class="item-title-row">' + data[i].title + '</div>' +
                         '<div class="item-text">' + filter_slash(product_info.content) + '</div></div>' +
                         '</div></div>' +
                         '</a>' +
                         '</li>';
 
                     $$(".search-list ul").append(htmlObj);
+
                 }
+                $$('img.lazy').trigger('lazy');
                 myApp.hideIndicator();
             }
             else
